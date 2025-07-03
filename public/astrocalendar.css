@@ -1,0 +1,167 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: radial-gradient(circle at center, #550000 30%, black 100%);
+    font-family: 'Arial Black', sans-serif;
+    color: white;
+    position: relative;
+}
+
+/* Twinkling Stars */
+.stars {
+    position: fixed;
+    width: 200%;
+    height: 200%;
+    background: transparent;
+    background-image: radial-gradient(white 1px, transparent 1px);
+    background-size: 4px 4px;
+    animation: twinkle 10s linear infinite;
+    z-index: 0;
+}
+
+@keyframes twinkle {
+    from { transform: translate(0,0); }
+    to { transform: translate(-50%, -50%); }
+}
+
+/* Glowing Blackhole */
+.blackhole {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 180px;
+    height: 180px;
+    margin-left: -90px;
+    margin-top: -90px;
+    border-radius: 50%;
+    background: radial-gradient(circle, black 40%, #ff0000 70%, transparent 100%);
+    box-shadow: 0 0 40px #ff0000;
+    animation: spin 8s linear infinite;
+    z-index: 1;
+}
+
+@keyframes spin {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Orbiting Planet Buttons */
+.planet-orbit {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300px;
+    height: 300px;
+    margin-left: -150px;
+    margin-top: -150px;
+    animation: orbit 10s linear infinite;
+    z-index: 2;
+}
+
+.orbit2 {
+    width: 200px;
+    height: 200px;
+    margin-left: -100px;
+    margin-top: -100px;
+    animation-duration: 15s;
+}
+
+.planet {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(45deg, #ff0000, #550000);
+    color: white;
+    border: none;
+    padding: 15px 25px;
+    border-radius: 30px;
+    box-shadow: 0 0 15px #ff0000;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.planet:hover {
+    transform: translateX(-50%) scale(1.1);
+    box-shadow: 0 0 25px #ff0000;
+}
+
+@keyframes orbit {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Exit Button */
+.exit {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: linear-gradient(45deg, #ff0000, #550000);
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    border-radius: 30px;
+    box-shadow: 0 0 15px #ff0000;
+    cursor: pointer;
+    font-size: 1.2em;
+    z-index: 5;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.exit:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 25px #ff0000;
+}
+
+/* Glassy Pop-ups */
+.popup, .result-popup {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 320px;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(5px);
+    border: 2px solid #ff0000;
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    transform: translate(-50%, -50%);
+    z-index: 4;
+}
+
+.input {
+    margin: 15px 0;
+    padding: 10px;
+    width: 90%;
+    border-radius: 10px;
+    border: 1px solid #ff0000;
+    background: black;
+    color: white;
+}
+
+#fetch-btn, #close-result {
+    background: #ff0000;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    color: white;
+    margin-top: 10px;
+}
+
+.hidden {
+    display: none;
+}
+
+.result-popup {
+    max-height: 400px;
+    overflow-y: auto;
+}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Astro Calendar - Enhanced</title>
+<link rel="stylesheet" href="astrocalendar.css">
+</head>
+<body>
+
+<!-- Starry Background -->
+<div class="stars"></div>
+
+<!-- Blackhole Animation -->
+<div class="blackhole"></div>
+
+<!-- Planet Buttons with Orbit -->
+<div class="planet-orbit">
+    <button id="date-btn" class="planet">📅 Date</button>
+</div>
+<div class="planet-orbit orbit2">
+    <button id="year-btn" class="planet">📆 Year</button>
+</div>
+
+<!-- Exit Button (Top-Right) -->
+<button id="exit-btn" class="exit">✖</button>
+
+<!-- Pop-up Input Area -->
+<div id="popup" class="popup hidden">
+    <h2 id="popup-title">Enter Date</h2>
+    <input type="date" id="date-input" class="input hidden">
+    <input type="number" id="year-input" placeholder="Enter Year" class="input hidden">
+    <button id="fetch-btn">Get Events</button>
+</div>
+
+<!-- Result Pop-up -->
+<div id="result-popup" class="result-popup hidden">
+    <h2>Astro Events</h2>
+    <div id="result-content"></div>
+    <button id="close-result">Close</button>
+</div>
+
+<script src="astrocalendar.js"></script>
+</body>
+</html>
