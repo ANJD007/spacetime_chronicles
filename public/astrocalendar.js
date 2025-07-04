@@ -43,23 +43,27 @@ fetchBtn.onclick = () => {
         prompt = `Summarize key space exploration events, astronomical discoveries, and rocket launches in the year ${yearVal}. Month-wise preferred.`;
     }
 
-    resultContent.innerHTML = '<p>Loading...</p>';
+    resultContent.innerHTML = '<p><strong>Loading...</strong></p>';
     resultPopup.classList.remove('hidden');
     popup.classList.add('hidden');
 
-    fetch("http://localhost:5000/api/chat", {   // Call your own backend, NOT OpenAI directly
+    fetch("/api/calendar", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: prompt })
+        body: JSON.stringify({ prompt })
     })
     .then(res => res.json())
     .then(data => {
-        const reply = data.choices?.[0]?.message?.content || "No response received.";
-        resultContent.innerHTML = `<p>${reply}</p>`;
+        if (data.error) {
+            resultContent.innerHTML = `<p><strong>AstroBot:</strong> ${data.error}</p>`;
+        } else {
+            const reply = data.reply || "No response received.";
+            resultContent.innerHTML = `<p><strong>Events:</strong><br>${reply}</p>`;
+        }
     })
     .catch(err => {
         console.error(err);
-        resultContent.innerHTML = `<p>Error fetching events from ChatGPT.</p>`;
+        resultContent.innerHTML = `<p><strong>Error:</strong> Unable to fetch events from AstroBot.</p>`;
     });
 };
 

@@ -26,23 +26,23 @@ function sendMessage() {
 function fetchGPTResponse(query) {
     appendMessage("AstroBot", "Thinking...");
 
-    fetch("http://localhost:5000/api/chat", {
+    fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: query })
     })
     .then(res => res.json())
     .then(data => {
-        if (data.choices && data.choices.length > 0) {
-            const reply = data.choices[0].message.content.trim();
-            chatWindow.lastChild.textContent = "AstroBot: " + reply;
+        if (data.error) {
+            chatWindow.lastChild.innerHTML = `<strong>AstroBot:</strong> ${data.error}`;
         } else {
-            chatWindow.lastChild.textContent = "AstroBot: No response received.";
+            const reply = data.reply || "No response received.";
+            chatWindow.lastChild.innerHTML = `<strong>AstroBot:</strong> ${reply}`;
         }
     })
     .catch(err => {
         console.error(err);
-        chatWindow.lastChild.textContent = "AstroBot: Sorry, I couldn't fetch a response.";
+        chatWindow.lastChild.innerHTML = `<strong>AstroBot:</strong> Sorry, I couldn't fetch a response.`;
     });
 }
 
